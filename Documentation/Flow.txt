@@ -1,0 +1,29 @@
+Battle_Start
+    *Turn_Start
+        Action_Selection
+            >SideA_Selection
+            >SideB_Selection
+        Initiative_Determined
+        Resolution_Start
+            *Item_Activated
+                Effect_Applied
+            *Combatant_Resolution
+                *Move_Resolution
+                    Accuracy_Calculated
+                    Damage_Calculated
+                    Damage_Applied
+                    Status_Applied
+                *Status_Resolution
+                    Effect_applied
+                Faint_Resolution   
+        Resolution_End
+    Turn_End
+Battle_End
+            
+            
+            
+
+
+
+> = Concurrent
+* = Loop
