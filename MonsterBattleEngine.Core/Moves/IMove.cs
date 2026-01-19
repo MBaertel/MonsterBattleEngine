@@ -14,7 +14,7 @@ namespace MonsterBattleEngine.Core.Moves
         public int BasePower { get; }
         public int BaseAccuracy { get; }
 
-        public MoveTypes MoveTypes { get; }
+        public MoveTypes MoveType { get; }
         public List<IBattleEffect> Effects { get; }
     }
 }

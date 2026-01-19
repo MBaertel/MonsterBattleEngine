@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MonsterBattleEngine.Core.BattleFlow
 {
-    internal class BattleSequencer
+    public class BattleSequencer
     {
     }
 }
