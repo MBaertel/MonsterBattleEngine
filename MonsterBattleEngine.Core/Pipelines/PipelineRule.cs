@@ -25,6 +25,7 @@ namespace MonsterBattleEngine.Core.Pipelines
             if (CanHandle(evt))
                 OnEventCompleted(evt);
         }
+
         protected abstract void OnEventCompleted(TEvent evt);
     }
 }
