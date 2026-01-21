@@ -37,7 +37,7 @@ namespace MonsterBattleEngine.Core.Systems
         public void Register(IBattleEventBus bus)
         {
             _bus = bus;
-            _handlerId = bus.Subscribe<TEvent>(this,Execute);
+            _handlerId = bus.Subscribe<TEvent>(this,Execute,100);
         }
     }
 }

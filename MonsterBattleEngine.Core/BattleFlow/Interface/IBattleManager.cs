@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MonsterBattleEngine.Core.BattleFlow.Interface
 {
-    public interface IBattleManager : IBattleEventBus
+    public interface IBattleManager
     {
         BattleState Battle { get; }
     }

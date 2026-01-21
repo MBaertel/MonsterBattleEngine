@@ -6,11 +6,11 @@ using System.Text;
 
 namespace MonsterBattleEngine.Core.Pipelines
 {
-    public class PipelineRule<TEvent> : IPipelineRule
+    public abstract class PipelineRuleBase<TEvent> : IPipelineRule
         where TEvent : IBattleEvent
     {
         private readonly IBattleEventBus _bus;
-        public PipelineRule(IBattleEventBus bus)
+        public PipelineRuleBase(IBattleEventBus bus)
         {
             _bus = bus;
         }
@@ -22,10 +22,12 @@ namespace MonsterBattleEngine.Core.Pipelines
 
         public void Apply(IBattleEvent evt)
         {
-            if (CanHandle(evt))
-                OnEventCompleted(evt);
+            if (evt is TEvent tevt)
+                OnEventCompleted(tevt);
         }
 
         protected abstract void OnEventCompleted(TEvent evt);
+
+        protected void Raise(IBattleEvent evt) => _bus.Publish(evt);
     }
 }
