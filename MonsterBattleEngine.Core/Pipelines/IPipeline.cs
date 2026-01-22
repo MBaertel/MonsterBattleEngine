@@ -16,14 +16,19 @@ namespace MonsterBattleEngine.Core.Pipelines
         string Name { get; }
 
         /// <summary>
-        /// Registers all rules in this pipeline with the provided event bus.
+        /// Registers Pipeline with the provided event bus.
         /// </summary>
         /// <param name="bus">Event Bus to register with.</param>
         void Register(IBattleEventBus bus);
 
         /// <summary>
+        /// Unregister from the current bus.
+        /// </summary>
+        void Unregister();
+
+        /// <summary>
         /// Get all rules in this Pipeline.
         /// </summary>
-        IEnumerable<IPipelineRule> Rules { get; }
+        IReadOnlyList<IPipelineRule> Rules { get; }
     }
 }

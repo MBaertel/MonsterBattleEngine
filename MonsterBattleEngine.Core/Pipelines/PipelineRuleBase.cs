@@ -9,25 +9,21 @@ namespace MonsterBattleEngine.Core.Pipelines
     public abstract class PipelineRuleBase<TEvent> : IPipelineRule
         where TEvent : IBattleEvent
     {
-        private readonly IBattleEventBus _bus;
-        public PipelineRuleBase(IBattleEventBus bus)
-        {
-            _bus = bus;
-        }
+        private IBattleEventBus _bus;
+        private bool _registered = false;
 
         public bool CanHandle(IBattleEvent battleEvent)
         {
             return battleEvent is TEvent;
         }
 
-        public void Apply(IBattleEvent evt)
+        public IBattleEvent Apply(IBattleEvent evt)
         {
             if (evt is TEvent tevt)
-                OnEventCompleted(tevt);
+                return Transform(tevt);
+            throw new ArgumentException("Rule can't handle event");
         }
 
-        protected abstract void OnEventCompleted(TEvent evt);
-
-        protected void Raise(IBattleEvent evt) => _bus.Publish(evt);
+        protected abstract IBattleEvent Transform(TEvent evt);
     }
 }

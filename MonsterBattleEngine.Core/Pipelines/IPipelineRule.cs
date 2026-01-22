@@ -1,4 +1,5 @@
-﻿using MonsterBattleEngine.Core.Events;
+﻿using MonsterBattleEngine.Core.BattleFlow.Interface;
+using MonsterBattleEngine.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,7 +22,6 @@ namespace MonsterBattleEngine.Core.Pipelines
         /// Appply the rule.
         /// </summary>
         /// <param name="evt">Input Event.</param>
-        void Apply(IBattleEvent evt);
-
+        IBattleEvent Apply(IBattleEvent evt);
     }
 }

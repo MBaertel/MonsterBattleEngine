@@ -12,15 +12,14 @@ namespace MonsterBattleEngine.Core.Pipelines
     {
         private Func<TIn,TOut> _lambda;
 
-        public LambdaPipelineRule(IBattleEventBus bus,Func<TIn,TOut> lambda)
-            :base(bus)
+        public LambdaPipelineRule(Func<TIn,TOut> lambda)
         {
             _lambda = lambda;
         }
 
-        protected override void OnEventCompleted(TIn evt)
+        protected override IBattleEvent Transform(TIn evt)
         {
-            Raise(_lambda(evt));
+            return _lambda(evt);
         }
     }
 }
