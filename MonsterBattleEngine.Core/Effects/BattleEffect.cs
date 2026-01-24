@@ -13,7 +13,7 @@ namespace MonsterBattleEngine.Core.Effects
     {
         public CombatantBase Owner { get; }
         protected BattleEffect(IBattleEventBus bus, string name,CombatantBase owner)
-            : base(bus, name) 
+            : base(name) 
         {
             Owner = owner;
         }

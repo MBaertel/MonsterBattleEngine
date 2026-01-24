@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="MonsterBattleEngine.Core/MonsterBattleEngine.Core.csproj" />
+  <Project Path="MonsterBattleEngine.Tests/MonsterBattleEngine.Tests.csproj" Id="2e132019-fa03-4f71-bd17-67bab846c7f7" />
 </Solution>

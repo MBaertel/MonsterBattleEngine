@@ -22,17 +22,31 @@ namespace MonsterBattleEngine.Core.BattleFlow
 
         public void Publish<T>(T evt) where T : IBattleEvent
         {
-            var type = typeof(T);
-            if (!_handlers.TryGetValue(type, out var handlers)) return;
-            var orderedHandlers = handlers.OrderByDescending(h => h.Priority).ToList();
+            var eventType = evt.GetType();
 
-            foreach (var h in orderedHandlers)
+            // Collect matching handlers first to avoid modifying collections while iterating
+            var toInvoke = new List<(Type type, HandlerInfo handler)>();
+
+            foreach (var (handlerType, handlers) in _handlers)
             {
-                ((Action<T>)h.Handler)(evt);
+                if (!handlerType.IsAssignableFrom(eventType))
+                    continue;
 
-                if (h.Once)
+                foreach (var handler in handlers)
                 {
-                    handlers.Remove(h);
+                    toInvoke.Add((handlerType, handler));
+                }
+            }
+
+            // Order by priority (higher runs first — flip if you want the opposite)
+            foreach (var (type, handlerInfo) in toInvoke
+                         .OrderByDescending(h => h.handler.Priority))
+            {
+                handlerInfo.Handler.DynamicInvoke(evt);
+
+                if (handlerInfo.Once)
+                {
+                    _handlers[type].RemoveAll(h => h.Id == handlerInfo.Id);
                 }
             }
         }
