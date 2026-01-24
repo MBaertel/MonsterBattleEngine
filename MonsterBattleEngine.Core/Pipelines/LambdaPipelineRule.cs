@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MonsterBattleEngine.Core.Pipelines
 {
-    public class LambdaPipelineRule<TIn,TOut> : PipelineRuleBase<TIn>
+    public class LambdaPipelineRule<TIn,TOut> : PipelineRuleBase<TIn,TOut>
         where TIn : IBattleEvent 
         where TOut : IBattleEvent
     {
@@ -17,9 +17,7 @@ namespace MonsterBattleEngine.Core.Pipelines
             _lambda = lambda;
         }
 
-        protected override IBattleEvent Transform(TIn evt)
-        {
-            return _lambda(evt);
-        }
+        protected override TOut Transform(TIn evt) =>
+            _lambda(evt);
     }
 }

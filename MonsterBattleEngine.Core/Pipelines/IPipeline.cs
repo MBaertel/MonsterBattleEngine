@@ -30,5 +30,10 @@ namespace MonsterBattleEngine.Core.Pipelines
         /// Get all rules in this Pipeline.
         /// </summary>
         IReadOnlyList<IPipelineRule> Rules { get; }
+
+        /// <summary>
+        /// Get all sub pipelines in this pipeline.
+        /// </summary>
+        IReadOnlyList<IPipeline> SubPipelines { get; }
     }
 }

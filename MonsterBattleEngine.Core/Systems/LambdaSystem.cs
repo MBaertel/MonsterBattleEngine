@@ -9,11 +9,10 @@ namespace MonsterBattleEngine.Core.Systems
     public class LambdaSystem<TEvent> : SystemBase<TEvent> where TEvent : IBattleEvent
     {
         private Action<TEvent> _lambda;
-        public LambdaSystem(IBattleEventBus bus,string name,Action<TEvent> lambda)
+        public LambdaSystem(string name,Action<TEvent> lambda)
             :base(name)
         {
             _lambda = lambda;
-            Register(bus);
         }
 
         protected override void Process(TEvent evt)

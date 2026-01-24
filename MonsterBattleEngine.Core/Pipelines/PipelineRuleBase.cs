@@ -6,24 +6,42 @@ using System.Text;
 
 namespace MonsterBattleEngine.Core.Pipelines
 {
-    public abstract class PipelineRuleBase<TEvent> : IPipelineRule
-        where TEvent : IBattleEvent
+    public abstract class PipelineRuleBase<TIn,TOut> : IPipelineRule
+        where TIn : IBattleEvent
+        where TOut : IBattleEvent
     {
         private IBattleEventBus _bus;
         private bool _registered = false;
 
+        public Type From => typeof(TIn);
+        public Type To => typeof(TOut);
+
         public bool CanHandle(IBattleEvent battleEvent)
         {
-            return battleEvent is TEvent;
+            return battleEvent is TIn;
         }
 
-        public IBattleEvent Apply(IBattleEvent evt)
+        protected abstract TOut Transform(TIn evt);
+
+        private void Handle(TIn evt)
         {
-            if (evt is TEvent tevt)
-                return Transform(tevt);
-            throw new ArgumentException("Rule can't handle event");
+            var outEvt = Transform(evt);
+            _bus.Publish<TOut>(outEvt);
         }
 
-        protected abstract IBattleEvent Transform(TEvent evt);
+        public void Register(IBattleEventBus bus)
+        {
+            if (_registered) return;
+            _bus = bus;
+            _bus.Subscribe<TIn>(this, Handle,-1);
+            _registered = true;
+        }
+
+        public void Unregister()
+        {
+            if(!_registered || _bus == null) return;
+            _bus.Unsubscribe<TIn>(this);
+            _registered = false;
+        }
     }
 }

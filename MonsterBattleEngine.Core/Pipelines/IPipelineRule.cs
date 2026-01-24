@@ -11,6 +11,10 @@ namespace MonsterBattleEngine.Core.Pipelines
     /// </summary>
     public interface IPipelineRule
     {
+
+        Type From { get; }
+        Type To { get; }
+
         /// <summary>
         /// Test if this Rule can handle the input Event.
         /// </summary>
@@ -19,9 +23,10 @@ namespace MonsterBattleEngine.Core.Pipelines
         bool CanHandle(IBattleEvent evt);
 
         /// <summary>
-        /// Appply the rule.
+        /// Register this rule with the given Event bus. 
         /// </summary>
-        /// <param name="evt">Input Event.</param>
-        IBattleEvent Apply(IBattleEvent evt);
+        /// <param name="bus"></param>
+        void Register(IBattleEventBus bus);
+        void Unregister();
     }
 }

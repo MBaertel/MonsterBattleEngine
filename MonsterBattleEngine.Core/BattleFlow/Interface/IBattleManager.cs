@@ -8,5 +8,6 @@ namespace MonsterBattleEngine.Core.BattleFlow.Interface
     public interface IBattleManager
     {
         BattleState Battle { get; }
+        IBattleEventBus Bus { get; }
     }
 }

@@ -16,6 +16,16 @@ namespace MonsterBattleEngine.Core.Events
         Guid Id { get; }
 
         /// <summary>
+        /// Id of the Event that caused this event, if any.
+        /// </summary>
+        Guid? CauseEventId { get; }
+
+        /// <summary>
+        /// Name of the event Phase (Used for non-generic handling)
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
         /// Determines wether the event can be Cancelled or not.
         /// </summary>
         bool Cancellable { get; }

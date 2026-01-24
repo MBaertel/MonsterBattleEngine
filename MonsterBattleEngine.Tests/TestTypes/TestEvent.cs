@@ -6,25 +6,15 @@ using System.Text;
 
 namespace MonsterBattleEngine.Tests.TestTypes
 {
-    public class TestEvent : IBattleEvent
+    public class TestEvent(BattleState battle = null,Guid? causeId = null,bool isCancelled = false) 
+        :EventBase(battle,causeId,isCancelled)
     {
-        public Guid Id { get; } = Guid.NewGuid();
-
-        public bool Cancellable => false;
-
-        public bool IsCancelled { get; set; } = false;
-
-        public BattleState Battle => null;
+        public override string Name => "TestEvent";
     }
 
-    public class TestEvent2 : IBattleEvent
+    public class TestEvent2(BattleState battle = null, Guid? causeId = null, bool isCancelled = false)
+        : EventBase(battle, causeId, isCancelled)
     {
-        public Guid Id { get; } = Guid.NewGuid();
-
-        public bool Cancellable => false;
-
-        public bool IsCancelled { get; set; } = false;
-
-        public BattleState Battle => null;
+        public override string Name => "TestEvent2";
     }
 }
