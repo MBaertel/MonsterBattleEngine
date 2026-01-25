@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MonsterBattleEngine.Core\MonsterBattleEngine.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
-
 </Project>

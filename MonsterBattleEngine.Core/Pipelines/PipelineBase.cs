@@ -22,7 +22,10 @@ namespace MonsterBattleEngine.Core.Pipelines
         {
             _rules = new List<IPipelineRule>();
             _subPipelines = new List<IPipeline>();
+            Configure();
         }
+
+        public abstract void Configure();
 
         public void Register(IBattleEventBus bus)
         {
