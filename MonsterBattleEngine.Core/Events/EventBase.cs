@@ -9,7 +9,7 @@ namespace MonsterBattleEngine.Core.Events
     {
         public Guid Id { get; }
         public Guid? CauseEventId { get; }
-        public abstract string Name { get; }
+        public virtual string Name => this.GetType().Name;
 
         public virtual bool Cancellable { get; } = false;
 

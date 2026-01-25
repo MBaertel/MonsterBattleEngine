@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonsterBattleEngine.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+183cd4ab9f82506392fe948fa20e77d56a2a948b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bcd5a81250f6085574fdd3199e58299f3fe1a6c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonsterBattleEngine.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonsterBattleEngine.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
